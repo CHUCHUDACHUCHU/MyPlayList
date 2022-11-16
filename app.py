@@ -6,8 +6,19 @@ client = MongoClient('mongodb+srv://test:sparta@cluster0.rypuzfe.mongodb.net/Clu
 db = client.dbMyPlaylist
 
 @app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/detail')
 def detail():
-    return render_template('detail.html')
+    return render_template("detail.html")
+
+@app.route("/api/posts", methods=['GET'])
+def get_posts():
+    posts = list(db.sing.find({}).sort("date", -1).limit(20))
+    for post in posts:
+        post["_id"] = str(post["_id"])
+    return jsonify({"result": "success", "msg": "카드를 가져왔습니다.", "posts": posts})
 
 #comment post
 @app.route("/comment", methods=["POST"])
