@@ -76,7 +76,6 @@
 </script>
 
 <body>
-
 <section>
     {#로고#}
     <div class="navbar-brand">
@@ -92,15 +91,14 @@
         <div class="row g-0">
             <div class="col-md-4" id="img-body">
                 {#index에서 가져오는 카드 이미지#}
-                <img src="{{ img }}" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-                {#index에서 가져오는 카드 내용#}
-                <div class="card-body" id="card-body">
-                    <h5 class="card-title">{{ title }}</h5>
-                    <p class="card-text"><small class="text-muted-1">{{singer}}</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small
-                            class="text-muted-2">{{genre}}</small></p>
-                    <p class="card-text2">{{ comment }}</p>
+                <img src="{{ img }}" class="img-fluid rounded-start" alt="..."></div>
+        <div class="col-md-8">
+            {#index에서 가져오는 카드 내용#}
+            <div class="card-body" id="card-body">
+                <h5 class="card-title">{{ title }}</h5>
+                <p class="card-text"><small class="text-muted-1">{{singer}}</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small
+                        class="text-muted-2">{{genre}}</small></p>
+                <p class="card-text2">{{ comment }}</p>
                 </div>
                 <div class="button-body">
                     {#생성하는 코멘트 버튼#}
