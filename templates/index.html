@@ -45,7 +45,12 @@
             border-radius: 30px;
             margin: 15px;
         }
-
+        .button-box {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
     </style>
     <script>
         $(document).ready(function () {
@@ -65,13 +70,26 @@
                 </div>
                 <div class="navbar-menu">
                     <div class="navbar-end">
-                        <span class="navbar-item">
-                              <a class="button is-inverted" onclick="posting()">
-                                <span>작성하기</span>
-                              </a>
-                              <a class="button is-inverted">
-                                <span>Logout</span>
-                              </a>
+                        <span class="">
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="노래 검색">
+                                </div>
+                                <div class="control">
+                                    <a class="button is-info">
+                                      Search
+                                    </a>
+                                </div>
+                                &#160&#160
+                                </div>
+                                <div class="button-box">
+                                    <a class="button is-inverted" onclick="window.location.href=`/create`">
+                                        <span>작성하기</span>
+                                    </a>
+                                    <a class="button is-danger">
+                                        <span>Logout</span>
+                                    </a>
+                                </div>
                         </span>
                     </div>
                 </div>

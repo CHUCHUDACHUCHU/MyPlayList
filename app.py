@@ -36,13 +36,9 @@ def web_comments_post():
 def home():
     return render_template('index.html')
 
-@app.route('/detail')
-def detail():
-    return render_template("detail.html")
-    
 @app.route('/create')
 def create():
-   return render_template('creates.html')
+    return render_template('creates.html')
 
 @app.route("/api/posts", methods=['GET'])
 def get_posts():
@@ -71,11 +67,19 @@ def comments_get():
     comment_list = list(db.comments.find({}, {'_id': False}))
     return jsonify({'comments': comment_list})
 
-#sing get
-@app.route("/sing", methods=["GET"])
-def sing_get():
-    sing_one = db.sing.find_one({'index':'1'}, {'_id': False})
-    return jsonify({'sings': sing_one})
+
+@app.route("/detail/")
+def get_cards():
+    one_card = request.args.get('card')
+    print(one_card)
+    cards = db.sing.find_one({'index':int(one_card)}, {'_id': False})
+    if cards:
+        img = cards['img']
+        title = cards['title']
+        singer = cards['singer']
+        genre = cards['genre']
+        comment = cards['comment']
+    return render_template("detail.html", img=img, title=title, singer=singer, genre=genre, comment=comment)
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
