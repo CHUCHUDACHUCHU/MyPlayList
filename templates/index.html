@@ -41,15 +41,44 @@
 
         .card {
             width: 300px;
-
             border-radius: 30px;
             margin: 15px;
         }
-        .button-box {
+
+        .head-container {
             display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            align-items: flex-end;
+            justify-content: space-between;
+            width: 90%;
+            margin: auto;
+        }
+
+        .button-container {
+            max-width: 400px;
+
+        }
+
+        .header {
+            height: 100px;
+        }
+
+        .navbar-end-box-one {
+            display: flex;
+            width: 300px;
+            height: 35px;
+            justify-content: flex-end;
+        }
+
+        .navbar-end-box-two {
+            display: flex;
+            width: 300px;
+            height: 35px;
+            margin-top: 30px;
+            justify-content: flex-end;
+        }
+
+        .navbar-end {
+            flex-direction: column;
+            height: 100px;
         }
     </style>
     <script>
@@ -59,38 +88,30 @@
     </script>
 </head>
 <body>
-<section>
+<section class="header">
     <div class="hero-head">
-        <nav class="navbar">
-            <div class="container">
+        <nav class="navbar head-container">
+            <div>
                 <div class="navbar-brand">
                     <div class="navbar-item">
                         <p class="title is-1">MyPlaylist</p>
                     </div>
                 </div>
+            </div>
+            <div class="button-container">
                 <div class="navbar-menu">
                     <div class="navbar-end">
-                        <span class="">
-                            <div class="field has-addons">
-                                <div class="control">
-                                    <input class="input" type="text" placeholder="노래 검색">
-                                </div>
-                                <div class="control">
-                                    <a class="button is-info">
-                                      Search
-                                    </a>
-                                </div>
-                                &#160&#160
-                                </div>
-                                <div class="button-box">
-                                    <a class="button is-inverted" onclick="window.location.href=`/create`">
-                                        <span>작성하기</span>
-                                    </a>
-                                    <a class="button is-danger">
-                                        <span>Logout</span>
-                                    </a>
-                                </div>
-                        </span>
+                        <div class="navbar-end-box-one">
+                            <a class="button">마이페이지</a>
+                            <a class="button is-danger">
+                                <span>로그아웃</span>
+                            </a>
+                        </div>
+                        <div class="navbar-end-box-two">
+                            <a class="button" onclick="window.location.href=`/create`">
+                                <span>작성하기</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
