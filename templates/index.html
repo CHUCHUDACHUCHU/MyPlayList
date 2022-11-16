@@ -43,6 +43,7 @@
             width: 300px;
             border-radius: 30px;
             margin: 15px;
+            margin-top:auto;
         }
 
         .head-container {
@@ -58,7 +59,7 @@
         }
 
         .header {
-            height: 100px;
+            height: 70px;
         }
 
         .navbar-end-box-one {
@@ -68,17 +69,22 @@
             justify-content: flex-end;
         }
 
-        .navbar-end-box-two {
+        .creat-box {
             display: flex;
-            width: 300px;
+            width: 90%;
             height: 35px;
-            margin-top: 30px;
+            margin:40px auto;
+            flex-direction: row;
             justify-content: flex-end;
         }
 
         .navbar-end {
             flex-direction: column;
-            height: 100px;
+            height: 30px;
+        }
+        hr.soild {
+            border-top: 3px solid #bbb;
+            margin-bottom: 80px;
         }
     </style>
     <script>
@@ -94,7 +100,8 @@
             <div>
                 <div class="navbar-brand">
                     <div class="navbar-item">
-                        <p class="title is-1">MyPlaylist</p>
+                        <p style="cursor:pointer" class="title is-1" onclick="window.location.reload()">MyPlaylist<span
+                                class="title is-4">- 나만의 플레이 리스트를 만들어 보세요!</span></p>
                     </div>
                 </div>
             </div>
@@ -103,23 +110,24 @@
                     <div class="navbar-end">
                         <div class="navbar-end-box-one">
                             <a class="button">마이페이지</a>
+                            &nbsp&nbsp
                             <a class="button is-danger">
                                 <span>로그아웃</span>
                             </a>
                         </div>
-                        <div class="navbar-end-box-two">
-                            <a class="button" onclick="window.location.href=`/create`">
-                                <span>작성하기</span>
-                            </a>
-                        </div>
+
                     </div>
                 </div>
             </div>
         </nav>
     </div>
-    <div class="is-divider" data-content="OR"></div>
+    <div class="creat-box">
+        <a class="button" onclick="window.location.href=`/create`">
+            <span>작성하기</span>
+        </a>
+    </div>
 </section>
-<hr class="rounded">
+<hr class="soild">
 <div id="cards-box" class="main-container">
 </div>
 </body>

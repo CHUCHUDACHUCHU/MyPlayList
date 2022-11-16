@@ -27,29 +27,29 @@
 </head>
 
 <script>
-    {#$(document).ready(function () {#}
-    {#    listing();#}
-    {#});#}
+    $(document).ready(function () {
+        listing();
+    });
 
-    {#function listing() {#}
-    {#    $.ajax({#}
-    {#        type: 'GET',#}
-    {#        url: '/detail/comment',#}
-    {#        data: {},#}
-    {#        success: function (response) {#}
-    {#            let rows = response['comments']#}
-    {##}
-    {#            for (let i = 0; i < rows.length; i++) {#}
-    {#                let comment = rows[i]['comment']#}
-    {#                let name = rows[i]['name']#}
-    {##}
-    {#                let temp_html = `<tr><td>${name}</td>#}
-    {#                                 <td>${comment}</td></tr>`#}
-    {#                $('#order_box').append(temp_html)#}
-    {#            }#}
-    {#        }#}
-    {#    })#}
-    {#}#}
+    function listing() {
+        $.ajax({
+            type: 'GET',
+            url: '/detail/comment?card={{ index }}',
+            data: {},
+            success: function (response) {
+                let rows = response['comments']
+
+                for (let i = 0; i < rows.length; i++) {
+                    let comment = rows[i]['comment']
+                    let name = rows[i]['name']
+
+                    let temp_html = `<tr><td>${name}</td>
+                                     <td>${comment}</td></tr>`
+                    $('#order_box').append(temp_html)
+                }
+            }
+        })
+    }
 
     function posting() {
         let name = $('#name').val()
@@ -59,7 +59,7 @@
         $.ajax({
             type: 'POST',
             url: '/detail/comment',
-            data: {name_give: name, comment_give: comment},
+            data: {name_give: name, comment_give: comment, card_id_give:{{index}}},
             success: function (response) {
                 alert(response['msg'])
                 window.location.reload()
