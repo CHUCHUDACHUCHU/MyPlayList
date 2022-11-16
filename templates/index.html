@@ -1,17 +1,87 @@
 <!doctype html>
 <html lang="ko">
 <head>
+    <title>MyPlayList</title>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>MyPlayList</title>
+
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+    <!-- Font Awesome CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="{{ url_for('static', filename='assets/js/list.js') }}"></script>
+    <style>
+        * {
+            font-family: 'Jua', sans-serif;
+        }
+
+        .hero-head {
+            margin-top: 20px;
+        }
+
+        .title {
+            font-size: xxx-large;
+        }
+
+        .main-container {
+            width: 93%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            margin: 20px auto;
+        }
+
+        .card {
+            width: 300px;
+
+            border-radius: 30px;
+            margin: 15px;
+        }
+
+    </style>
+    <script>
+        $(document).ready(function () {
+            get_posts()
+        })
+    </script>
 </head>
 <body>
-    <div>
-        <h1>
-            index.html입니다.
-        </h1>
+<section>
+    <div class="hero-head">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <div class="navbar-item">
+                        <p class="title is-1">MyPlaylist</p>
+                    </div>
+                </div>
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                        <span class="navbar-item">
+                              <a class="button is-inverted" onclick="posting()">
+                                <span>작성하기</span>
+                              </a>
+                              <a class="button is-inverted">
+                                <span>Logout</span>
+                              </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </div>
+    <div class="is-divider" data-content="OR"></div>
+</section>
+<hr class="rounded">
+<div id="cards-box" class="main-container">
+</div>
 </body>
 </html>
