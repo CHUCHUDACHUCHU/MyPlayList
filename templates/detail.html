@@ -10,7 +10,7 @@
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
 
-    <!-- Font Awesome CSS -->
+    <!-- Template detail CSS -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -20,240 +20,126 @@
 
     <title>MyPlaylist_detail</title>
 
-    <style>
-        * {
-            font-family: 'Jua', sans-serif;
-        }
-        .mycard {
-            background-color: lightgray;
+    <!-- template Awesome CSS -->
+    <link href="/static/assets/css/detail.css" rel="stylesheet">
 
-            margin: 200px auto 20px auto;
-            padding: 10px;
-            width: 95%;
-            max-width: 1000px;
-            border-radius: 15px
-        }
-
-        .col-md-4 {
-            border-radius: 20px;
-        }
-
-        .col-md-4 > img {
-            border: 0.5px solid darkgray;
-            border-radius: 10px;
-        }
-
-        .card-body {
-            height: 85%;
-        }
-
-        .card-title {
-            font-weight: bold;
-        }
-
-        .button-body {
-            padding: 1rem;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            height: 15%;
-        }
-
-        .btn-group {
-            color: black;
-            border-color: black;
-
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-evenly;
-        }
-
-        .btn-check {
-            border-color: black;
-        }
-
-        .allPost {
-            display: none
-        }
-
-        .mypost {
-            background-color: darkgray;
-            border-radius: 15px;
-
-            width: 95%;
-            max-width: 1000px;
-            margin: 20px auto 0px auto;
-            padding: 10px;
-
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-evenly;
-        }
-
-        .nicName {
-            padding: 5px;
-        }
-
-        .comment {
-            width: 65%;
-            padding: 5px;
-        }
-
-        .table {
-            width: 95%;
-            max-width: 1000px;
-            margin: 20px auto 0px auto;
-        }
-    </style>
-
-    <script>
-        $(document).ready(function () {
-            listing();
-        });
-        
-        $(document).ready(function () {
-            cardListing();
-        });
-
-        $(document).ready(function () {
-            imgListing();
-        });
-
-        function cardListing() {
-            $.ajax({
-                type: 'GET',
-                url: '/sing',
-                data: {},
-                success: function (response) {
-                    console.log(response)
-                    let rowSing = response['sings']
-
-                    let comment = rowSing['comment']
-                    let genre = rowSing['genre']
-                    let singer = rowSing['singer']
-                    let title = rowSing['title']
-
-                    let temp_html = `<h5 class="card-title">${title}</h5>
-                                    <p class="card-text"><small class="text-muted-1">${singer}</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small
-                                            class="text-muted-2">${genre}</small></p>
-                                    <p class="card-text2">${comment}</p>`
-                    $('#card-body').append(temp_html)
-                }
-            })
-        }
-
-        function imgListing() {
-            $.ajax({
-                type: 'GET',
-                url: '/sing',
-                data: {},
-                success: function (response) {
-                    let rowSing = response['sings']
-
-                    let img = rowSing['img']
-
-                    let temp_html = `<img src=${img} class="img-fluid rounded-start" alt="...">`
-                    $('#img-body').append(temp_html)
-                }
-            })
-        }
-        function listing() {
-            $.ajax({
-                type: 'GET',
-                url: '/comment',
-                data: {},
-                success: function (response) {
-                    let rows = response['comments']
-
-                    for (let i = 0; i < rows.length; i++) {
-                        let comment = rows[i]['comment']
-                        let name = rows[i]['name']
-
-                        let temp_html = `<tr><td>${name}</td>
-                                         <td>${comment}</td></tr>`
-                        $('#order_box').append(temp_html)
-                    }
-                }
-            })
-        }
-
-        function posting() {
-            let name = $('#name').val()
-            let comment = $('#comment').val()
-
-            $.ajax({
-                type: 'POST',
-                url: '/comment',
-                data: {name_give: name, comment_give: comment},
-                success: function (response) {
-                    alert(response['msg'])
-                    window.location.reload()
-                }
-            });
-        }
-
-        function open_box() {
-            $('#post-box').show()
-        }
-
-        function close_box() {
-            $('#post-box').hide()
-        }
-    </script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
+<script>
+    $(document).ready(function () {
+        listing();
+    });
+
+    function listing() {
+        $.ajax({
+            type: 'GET',
+            url: '/comment',
+            data: {},
+            success: function (response) {
+                let rows = response['comments']
+
+                for (let i = 0; i < rows.length; i++) {
+                    let comment = rows[i]['comment']
+                    let name = rows[i]['name']
+
+                    let temp_html = `<tr><td>${name}</td>
+                                     <td>${comment}</td></tr>`
+                    $('#order_box').append(temp_html)
+                }
+            }
+        })
+    }
+
+    function posting() {
+        let name = $('#name').val()
+        let comment = $('#comment').val()
+
+        $.ajax({
+            type: 'POST',
+            url: '/comment',
+            data: {name_give: name, comment_give: comment},
+            success: function (response) {
+                alert(response['msg'])
+                window.location.reload()
+            }
+        });
+    }
+
+    function open_box() {
+        $('#post-box').show()
+    }
+
+    function close_box() {
+        $('#post-box').hide()
+    }
+</script>
+
 <body>
-<div class="mycard" style="max-width: 1000px;">
-    <div class="row g-0">
-        <div class="col-md-4" id="img-body">
-            <img src="{{ img }}" class="img-fluid rounded-start" alt="...">
+<section>
+    {#로고#}
+    <div class="navbar-brand">
+        <div class="navbar-item">
+            <p class="title is-1" onclick='window.location.href = "/"'>MyPlaylist</p>
         </div>
+    </div>
+</section>
+<hr class="rounded">
+<section>
+    {#index에서 가져오는 카드#}
+    <div class="mycard" style="max-width: 1000px;">
+        <div class="row g-0">
+            <div class="col-md-4" id="img-body">
+                {#index에서 가져오는 카드 이미지#}
+                <img src="{{ img }}" class="img-fluid rounded-start" alt="..."></div>
         <div class="col-md-8">
+            {#index에서 가져오는 카드 내용#}
             <div class="card-body" id="card-body">
                 <h5 class="card-title">{{ title }}</h5>
                 <p class="card-text"><small class="text-muted-1">{{singer}}</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small
                         class="text-muted-2">{{genre}}</small></p>
                 <p class="card-text2">{{ comment }}</p>
-            </div>
-            <div class="button-body">
-                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                    <input type="checkbox" onclick="open_box()" class="btn-check" id="btncheck1" autocomplete="off">
-                    <label class="btn btn-outline-dark" for="btncheck1">Comment</label>
-                    <input type="checkbox" onclick="close_box()" class="btn-check" id="btncheck2" autocomplete="off">
-                    <label class="btn btn-outline-dark" for="btncheck2">Close</label>
+                </div>
+                <div class="button-body">
+                    {#생성하는 코멘트 버튼#}
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <input type="checkbox" onclick="open_box()" class="btn-check" id="btncheck1" autocomplete="off">
+                        <label class="btn btn-outline-dark" for="btncheck1">Comment</label>
+                        <input type="checkbox" onclick="close_box()" class="btn-check" id="btncheck2" autocomplete="off">
+                        <label class="btn btn-outline-dark" for="btncheck2">Close</label>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="allPost" id="post-box">
-    <div class="mypost">
-        <input type="text" class="nicName" placeholder="Nic name" aria-label="Nic name" id="name">
-        <input type="text" class="comment" placeholder="Comment" aria-label="Comment" id="comment">
-        <button onclick="posting()" type="button" class="btn btn-outline-dark">post</button>
+</section>
+<section>
+    <div class="allPost" id="post-box">
+        {#생성하는 이름,코멘트#}
+        <div class="mypost">
+            <input type="text" class="nicName" placeholder="Nic name" aria-label="Nic name" id="name">
+            <input type="text" class="comment" placeholder="Comment" aria-label="Comment" id="comment">
+            <button onclick="posting()" type="button" class="btn btn-outline-dark">post</button>
+        </div>
     </div>
-</div>
-
-
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">Nic name</th>
-        <th scope="col">Comment</th>
-    </tr>
-    </thead>
-    <tbody id="order_box">
-    <tr>
-<!--        <td>아이들 팬</td>-->
-<!--        <td>노래 너무 좋아요! 화이팅!!</td>-->
-    </tr>
-    </tbody>
-</table>
-
+</section>
+<section>
+    <table class="table">
+        <thead>
+            {#생성된 코멘트 테이블#}
+            <tr>
+                <th scope="col">Nic name</th>
+                <th scope="col">Comment</th>
+            </tr>
+        </thead>
+        <tbody id="order_box">
+            {#생성된 이름,코멘트 테이블#}
+            <tr>
+            <!--<td>아이들 팬</td>-->
+            <!--<td>노래 너무 좋아요! 화이팅!!</td>-->
+            </tr>
+        </tbody>
+    </table>
+</section>
 </body>
 </html>
