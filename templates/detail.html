@@ -210,15 +210,14 @@
 <div class="mycard" style="max-width: 1000px;">
     <div class="row g-0">
         <div class="col-md-4" id="img-body">
-<!--            <img src="https://cloudfront-ap-northeast-1.images.arcpublishing.com/chosunbiz/AQMHLW4YZYOOMTE4VJYUZJ2ZXQ.j-->
-<!--pg" class="img-fluid rounded-start" alt="...">-->
+            <img src="{{ img }}" class="img-fluid rounded-start" alt="...">
         </div>
         <div class="col-md-8">
             <div class="card-body" id="card-body">
-<!--                <h5 class="card-title">노래 제목</h5>-->
-<!--                <p class="card-text"><small class="text-muted-1">가수</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small-->
-<!--                        class="text-muted-2">장르</small></p>-->
-<!--                <p class="card-text2">My comment.</p>-->
+                <h5 class="card-title">{{ title }}</h5>
+                <p class="card-text"><small class="text-muted-1">{{singer}}</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small
+                        class="text-muted-2">{{genre}}</small></p>
+                <p class="card-text2">{{ comment }}</p>
             </div>
             <div class="button-body">
                 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
