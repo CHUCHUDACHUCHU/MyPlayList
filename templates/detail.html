@@ -27,37 +27,38 @@
 </head>
 
 <script>
-    $(document).ready(function () {
-        listing();
-    });
+    {#$(document).ready(function () {#}
+    {#    listing();#}
+    {#});#}
 
-    function listing() {
-        $.ajax({
-            type: 'GET',
-            url: '/comment',
-            data: {},
-            success: function (response) {
-                let rows = response['comments']
-
-                for (let i = 0; i < rows.length; i++) {
-                    let comment = rows[i]['comment']
-                    let name = rows[i]['name']
-
-                    let temp_html = `<tr><td>${name}</td>
-                                     <td>${comment}</td></tr>`
-                    $('#order_box').append(temp_html)
-                }
-            }
-        })
-    }
+    {#function listing() {#}
+    {#    $.ajax({#}
+    {#        type: 'GET',#}
+    {#        url: '/detail/comment',#}
+    {#        data: {},#}
+    {#        success: function (response) {#}
+    {#            let rows = response['comments']#}
+    {##}
+    {#            for (let i = 0; i < rows.length; i++) {#}
+    {#                let comment = rows[i]['comment']#}
+    {#                let name = rows[i]['name']#}
+    {##}
+    {#                let temp_html = `<tr><td>${name}</td>#}
+    {#                                 <td>${comment}</td></tr>`#}
+    {#                $('#order_box').append(temp_html)#}
+    {#            }#}
+    {#        }#}
+    {#    })#}
+    {#}#}
 
     function posting() {
         let name = $('#name').val()
         let comment = $('#comment').val()
+        {#let one_card = ${'#one_card').val()#}
 
         $.ajax({
             type: 'POST',
-            url: '/comment',
+            url: '/detail/comment',
             data: {name_give: name, comment_give: comment},
             success: function (response) {
                 alert(response['msg'])
@@ -73,6 +74,7 @@
     function close_box() {
         $('#post-box').hide()
     }
+
 </script>
 
 <body>
@@ -95,7 +97,7 @@
         <div class="col-md-8">
             {#index에서 가져오는 카드 내용#}
             <div class="card-body" id="card-body">
-                <h5 class="card-title">{{ title }}</h5>
+                <h2 class="card-title" >{{ title }}</h2>
                 <p class="card-text"><small class="text-muted-1">{{singer}}</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small
                         class="text-muted-2">{{genre}}</small></p>
                 <p class="card-text2">{{ comment }}</p>
@@ -135,8 +137,8 @@
         <tbody id="order_box">
             {#생성된 이름,코멘트 테이블#}
             <tr>
-            <!--<td>아이들 팬</td>-->
-            <!--<td>노래 너무 좋아요! 화이팅!!</td>-->
+                <td>아이들 팬</td>
+                <td>노래 너무 좋아요! 화이팅!!</td>
             </tr>
         </tbody>
     </table>
