@@ -20,97 +20,15 @@
 
     <title>MyPlaylist_detail</title>
 
-    <style>
-        * {
-            font-family: 'Jua', sans-serif;
-        }
-        .mycard {
-            background-color: lightgray;
+    <!--Template detail CSS File-->
+    <link href="/static/assets/css/detail.css" rel="stylesheet">
 
-            margin: 200px auto 20px auto;
-            padding: 10px;
-            width: 95%;
-            max-width: 1000px;
-            border-radius: 15px
-        }
-
-        .col-md-4 {
-            border-radius: 20px;
-        }
-
-        .col-md-4 > img {
-            border: 0.5px solid darkgray;
-            border-radius: 10px;
-        }
-
-        .card-body {
-            height: 85%;
-        }
-
-        .card-title {
-            font-weight: bold;
-        }
-
-        .button-body {
-            padding: 1rem;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            height: 15%;
-        }
-
-        .btn-group {
-            color: black;
-            border-color: black;
-
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-evenly;
-        }
-
-        .btn-check {
-            border-color: black;
-        }
-
-        .allPost {
-            display: none
-        }
-
-        .mypost {
-            background-color: darkgray;
-            border-radius: 15px;
-
-            width: 95%;
-            max-width: 1000px;
-            margin: 20px auto 0px auto;
-            padding: 10px;
-
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-evenly;
-        }
-
-        .nicName {
-            padding: 5px;
-        }
-
-        .comment {
-            width: 65%;
-            padding: 5px;
-        }
-
-        .table {
-            width: 95%;
-            max-width: 1000px;
-            margin: 20px auto 0px auto;
-        }
-    </style>
 
     <script>
+        const param = window.location.search;
+        const paramData = new URLSearchParams(param)
+        const id = paramData.get('id')
+
         $(document).ready(function () {
             listing();
         });
@@ -126,7 +44,7 @@
         function cardListing() {
             $.ajax({
                 type: 'GET',
-                url: '/sing',
+                url: '/sing/detail?id=' + id,
                 data: {},
                 success: function (response) {
                     console.log(response)
@@ -149,7 +67,7 @@
         function imgListing() {
             $.ajax({
                 type: 'GET',
-                url: '/sing',
+                url: '/sing/detail?id=' + id,
                 data: {},
                 success: function (response) {
                     let rowSing = response['sings']
@@ -207,54 +125,65 @@
 </head>
 
 <body>
-<div class="mycard" style="max-width: 1000px;">
-    <div class="row g-0">
-        <div class="col-md-4" id="img-body">
-<!--            <img src="https://cloudfront-ap-northeast-1.images.arcpublishing.com/chosunbiz/AQMHLW4YZYOOMTE4VJYUZJ2ZXQ.j-->
-<!--pg" class="img-fluid rounded-start" alt="...">-->
-        </div>
-        <div class="col-md-8">
-            <div class="card-body" id="card-body">
-<!--                <h5 class="card-title">노래 제목</h5>-->
-<!--                <p class="card-text"><small class="text-muted-1">가수</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small-->
-<!--                        class="text-muted-2">장르</small></p>-->
-<!--                <p class="card-text2">My comment.</p>-->
+
+
+    <!--index에서 가져온 카드-->
+    <div class="mycard" style="max-width: 1000px;">
+        <div class="row g-0">
+            <!--카드 이미지-->
+            <div class="col-md-4" id="img-body">
+                <img src="https://cloudfront-ap-northeast-1.images.arcpublishing.com/chosunbiz/AQMHLW4YZYOOMTE4VJYUZJ2ZXQ.jpg" class="img-fluid rounded-start" alt="...">
             </div>
-            <div class="button-body">
-                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                    <input type="checkbox" onclick="open_box()" class="btn-check" id="btncheck1" autocomplete="off">
-                    <label class="btn btn-outline-dark" for="btncheck1">Comment</label>
-                    <input type="checkbox" onclick="close_box()" class="btn-check" id="btncheck2" autocomplete="off">
-                    <label class="btn btn-outline-dark" for="btncheck2">Close</label>
+            <div class="col-md-8">
+                <!--카드 내용 : index에서 불러와야 함-->
+                <div class="card-body" id="card-body">
+                    <h5 class="card-title">노래 제목</h5>
+                    <p class="card-text"><small class="text-muted-1">가수</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small
+                    class="text-muted-2">장르</small></p>
+                    <p class="card-text2">My comment.</p>
+                </div>
+                <!--댓글 추가 버튼-->
+                <div class="button-body">
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <input type="checkbox" onclick="open_box()" class="btn-check" id="btncheck1" autocomplete="off">
+                        <label class="btn btn-outline-dark" for="btncheck1">Comment</label>
+                        <input type="checkbox" onclick="close_box()" class="btn-check" id="btncheck2" autocomplete="off">
+                        <label class="btn btn-outline-dark" for="btncheck2">Close</label>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="allPost" id="post-box">
-    <div class="mypost">
-        <input type="text" class="nicName" placeholder="Nic name" aria-label="Nic name" id="name">
-        <input type="text" class="comment" placeholder="Comment" aria-label="Comment" id="comment">
-        <button onclick="posting()" type="button" class="btn btn-outline-dark">post</button>
+    <!--닉네임 댓글-->
+    <div class="allPost" id="post-box">
+        <div class="mypost">
+            <input type="text" class="nicName" placeholder="Nic name" aria-label="Nic name" id="name">
+            <input type="text" class="comment" placeholder="Comment" aria-label="Comment" id="comment">
+            <button onclick="posting()" type="button" class="btn btn-outline-dark">post</button>
+        </div>
     </div>
-</div>
 
+    <!--추가된 댓글 테이블-->
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Nic name</th>
+            <th scope="col">Comment</th>
+        </tr>
+        </thead>
+        <!--추가된 댓글 내용-->
+        <tbody id="order_box">
+        <tr>
+            <td>아이들 팬</td>
+            <td>노래 너무 좋아요! 화이팅!!</td>
+        </tr>
+        </tbody>
+    </table>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">Nic name</th>
-        <th scope="col">Comment</th>
-    </tr>
-    </thead>
-    <tbody id="order_box">
-    <tr>
-<!--        <td>아이들 팬</td>-->
-<!--        <td>노래 너무 좋아요! 화이팅!!</td>-->
-    </tr>
-    </tbody>
-</table>
+    <div class="mainBut-body">
+        <button type="button" class="btn btn-secondary">Main</button>
+    </div>
 
 </body>
 </html>
