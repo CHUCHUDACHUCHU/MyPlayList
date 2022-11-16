@@ -1,0 +1,101 @@
+
+* {
+    font-family: 'Jua', sans-serif;
+}
+.mycard {
+    background-color: lightgray;
+
+    margin: 200px auto 20px auto;
+    padding: 10px;
+    width: 95%;
+    max-width: 1000px;
+    border-radius: 15px
+}
+
+.col-md-4 {
+    border-radius: 20px;
+}
+
+.col-md-4 > img {
+    border: 0.5px solid darkgray;
+    border-radius: 10px;
+}
+
+.card-body {
+    height: 85%;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.button-body {
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 15%;
+}
+
+.btn-group {
+    color: black;
+    border-color: black;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.btn-check {
+    border-color: black;
+}
+
+.allPost {
+    display: none
+}
+
+.mypost {
+    background-color: darkgray;
+    border-radius: 15px;
+
+    width: 95%;
+    max-width: 1000px;
+    margin: 20px auto 0px auto;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.nicName {
+    padding: 5px;
+}
+
+.comment {
+    width: 65%;
+    padding: 5px;
+}
+
+.table {
+    width: 95%;
+    max-width: 1000px;
+    margin: 20px auto 0px auto;
+}
+
+.mainBut-body{
+    margin: auto;
+    padding: 10px;
+    width: 95%;
+    max-width: 1000px;
+    border-radius: 15px
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
