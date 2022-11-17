@@ -12,6 +12,8 @@
 
     <!-- Font Awesome CSS -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -40,10 +42,15 @@
         }
 
         .card {
+            height: 500px;
             width: 300px;
             border-radius: 30px;
             margin: 15px;
             margin-top:auto;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
         }
 
         .head-container {
@@ -55,7 +62,10 @@
 
         .button-container {
             max-width: 400px;
+        }
 
+        .button:hover {
+            transform: scale(1.1);
         }
 
         .header {
@@ -86,6 +96,11 @@
             border-top: 3px solid #bbb;
             margin-bottom: 80px;
         }
+
+        .title:hover {
+        transform: scale(1.01);
+        color: #5F5F5F;
+    }
     </style>
     <script>
         $(document).ready(function () {
@@ -100,7 +115,7 @@
             <div>
                 <div class="navbar-brand">
                     <div class="navbar-item">
-                        <p style="cursor:pointer" class="title is-1" onclick="window.location.reload()">MyPlaylist<span
+                        <p style="cursor:pointer" class="title" onclick="window.location.reload()">MyPlaylist<span
                                 class="title is-4">- 나만의 플레이 리스트를 만들어 보세요!</span></p>
                     </div>
                 </div>

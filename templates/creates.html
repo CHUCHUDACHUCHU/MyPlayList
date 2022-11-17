@@ -19,12 +19,55 @@
 
     <title>MiniProject</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
-          rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <link href="/static/assets/css/mystyle.css" rel="stylesheet">
+
     <style>
         * {
-            font-family: 'Jua', serif;
+            font-family: 'Jua', sans-serif;
         }
+
+        {#hj:#}
+        .hero-head {
+            margin-top: 20px;
+        }
+
+        .title {
+            font-size: x-large;
+        }
+
+        .title:hover {
+            transform: scale(1.01);
+            color: #5F5F5F;
+        }
+
+        .head-container {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            margin: auto;
+        }
+
+        .header {
+            height: 70px;
+        }
+
+        .creat-box {
+            display: flex;
+            width: 90%;
+            height: 35px;
+            margin: 40px auto;
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+
+        hr.soild {
+            border-top: 3px solid #bbb;
+            margin-bottom: 80px;
+        }
+        {#:hj#}
         .mypost {
             width: 95%;
             max-width: 500px;
@@ -44,7 +87,24 @@
 </head>
 <body>
 <!-- ======= Header ======= -->
-
+<section class="header">
+    <div class="hero-head">
+        <nav class="navbar head-container">
+            <div>
+                <div class="navbar-brand">
+                    <div class="navbar-item">
+                        <p style="cursor:pointer" class="title is-1" onclick='window.location.href = "/"'>
+                            MyPlaylist<span
+                                class="title is-4">- 나만의 플레이 리스트를 만들어 보세요!</span></p>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="creat-box">
+    </div>
+</section>
+<hr class="soild">
 <!-- End Header -->
 
 <!-- ======= Main ======= -->

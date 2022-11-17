@@ -12,7 +12,7 @@
 
     <!-- Template detail CSS -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -21,10 +21,172 @@
     <title>MyPlaylist_detail</title>
 
     <!-- template Awesome CSS -->
-    <link href="/static/assets/css/detail.css" rel="stylesheet">
+    <link href="/static/assets/css/mystyle.css" rel="stylesheet">
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 </head>
+
+<style>
+    * {
+        font-family: 'Jua', sans-serif;
+    }
+
+    .hero-head {
+        margin-top: 20px;
+    }
+
+    .title {
+        font-weight: 800;
+        font-size: 5rem;
+    }
+
+    .title:hover {
+        transform: scale(1.01);
+        color: #5F5F5F;
+    }
+
+    .head-container {
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+        margin: auto;
+    }
+
+    .header {
+        height: 70px;
+    }
+
+    .creat-box {
+        display: flex;
+        width: 90%;
+        height: 35px;
+        margin: 40px auto;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    hr.soild {
+        border-top: 3px solid #bbb;
+        margin-bottom: 80px;
+    }
+
+    {#여기까지 팀장님#}
+
+    .mycard {
+        background-color: transparent;
+        box-shadow: 5px 5px 5px 5px #E2E2E2;
+
+        margin: auto;
+        padding: 10px;
+        width: 100%;
+        max-width: 1200px;
+        border-radius: 15px
+    }
+
+    .col-md-4 {
+        border-radius: 20px;
+    }
+
+    .col-md-4 > img {
+        border: 0.5px solid darkgray;
+        border-radius: 10px;
+    }
+
+    .card-body {
+        height: 75%;
+    }
+
+    .card-title {
+        height: 50px;
+        font-size: xx-large;
+        font-weight: bold;
+
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: stretch;
+    }
+
+    .card-text {
+        height: 50px;
+        font-size: x-large;
+    }
+
+    .card-text2 {
+        font-size: x-large;
+    }
+
+    .button-body {
+        padding: 1rem;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        height: 25%;
+    }
+
+
+    .btn-group {
+        color: black;
+        border-color: black;
+
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: flex-start;
+    }
+
+    .allPost {
+        display: none;
+    }
+
+    .mypost {
+        background-color: transparent;
+        box-shadow: 5px 5px 5px 5px #E2E2E2;
+        border-radius: 15px;
+
+        width: 95%;
+        max-width: 1200px;
+        margin: 50px auto 0px auto;
+        padding: 10px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-evenly;
+    }
+
+    .nicName {
+        padding: 5px;
+    }
+
+    .comment {
+        width: 65%;
+        padding: 5px;
+    }
+
+    .table-body {
+        width: 95%;
+        max-width: 1000px;
+        margin: 20px auto 0px auto;
+    }
+
+    .table {
+        margin: auto;
+        padding: 10px;
+        width: 100%;
+        max-width: 1200px;
+        border-radius: 15px
+    }
+
+    .table_nic {
+        border-spacing: 0 20px;
+    }
+
+</style>
 
 <script>
     $(document).ready(function () {
@@ -78,70 +240,89 @@
 </script>
 
 <body>
-<section>
-    {#로고#}
-    <div class="navbar-brand">
-        <div class="navbar-item">
-            <p class="title is-1" onclick='window.location.href = "/"'>MyPlaylist</p>
-        </div>
+<section class="header">
+    <div class="hero-head">
+        <nav class="navbar head-container">
+            <div>
+                <div class="navbar-brand">
+                    <div class="navbar-item">
+                        <p style="cursor:pointer" class="title is-1" onclick='window.location.href = "/"'>
+                            MyPlaylist<span
+                                class="title is-4">- 나만의 플레이 리스트를 만들어 보세요!</span></p>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="creat-box">
     </div>
 </section>
-<hr class="rounded">
-<section>
+<hr class="soild">
+<div id="cards-box">
     {#index에서 가져오는 카드#}
-    <div class="mycard" style="max-width: 1000px;">
+    <div class="mycard" style="max-width: 1200px;">
         <div class="row g-0">
             <div class="col-md-4" id="img-body">
                 {#index에서 가져오는 카드 이미지#}
                 <img src="{{ img }}" class="img-fluid rounded-start" alt="..."></div>
-        <div class="col-md-8">
-            {#index에서 가져오는 카드 내용#}
-            <div class="card-body" id="card-body">
-                <h2 class="card-title" >{{ title }}</h2>
-                <p class="card-text"><small class="text-muted-1">{{singer}}</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small
-                        class="text-muted-2">{{genre}}</small></p>
-                <p class="card-text2">{{ comment }}</p>
+            <div class="col-md-8">
+                {#index에서 가져오는 카드 내용#}
+                <div class="card-body" id="card-body">
+                    <h2 class="card-title">{{ title }}</h2>
+                    <p class="card-text"><small
+                            class="text-muted-1">{{ singer }}</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small
+                            class="text-muted-2">{{ genre }}</small></p>
+                    <p class="card-text2">{{ comment }}</p>
                 </div>
                 <div class="button-body">
                     {#생성하는 코멘트 버튼#}
                     <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                        <input type="checkbox" onclick="open_box()" class="btn-check" id="btncheck1" autocomplete="off">
-                        <label class="btn btn-outline-dark" for="btncheck1">Comment</label>
-                        <input type="checkbox" onclick="close_box()" class="btn-check" id="btncheck2" autocomplete="off">
-                        <label class="btn btn-outline-dark" for="btncheck2">Close</label>
+                        <a class="button" onclick="open_box()">코멘트</a>
+                        &nbsp&nbsp
+                        <a class="button is-danger" onclick="close_box()">
+                            <span>닫기</span>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
+
 <section>
     <div class="allPost" id="post-box">
         {#생성하는 이름,코멘트#}
         <div class="mypost">
             <input type="text" class="nicName" placeholder="Nic name" aria-label="Nic name" id="name">
             <input type="text" class="comment" placeholder="Comment" aria-label="Comment" id="comment">
-            <button onclick="posting()" type="button" class="btn btn-outline-dark">post</button>
+            <a class="button is-danger" onclick="posting()">
+                <span>post</span>
+            </a>
         </div>
     </div>
 </section>
+
 <section>
-    <table class="table">
-        <thead>
+    <div class="table-body">
+        <table class="table">
+            <thead>
             {#생성된 코멘트 테이블#}
             <tr>
-                <th scope="col">Nic name</th>
-                <th scope="col">Comment</th>
+                <th scope="col" class="table_nic">Nic name</th>
+                <th scope="col" class="table_com">Comment</th>
             </tr>
-        </thead>
-        <tbody id="order_box">
+            </thead>
+            <tbody id="order_box">
             {#생성된 이름,코멘트 테이블#}
             <tr>
-                <td>아이들 팬</td>
-                <td>노래 너무 좋아요! 화이팅!!</td>
+                {#<td>아이들 팬</td>#}
+                {#<td>노래 너무 좋아요! 화이팅!!</td>#}
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </section>
+
 </body>
+
 </html>
