@@ -12,7 +12,7 @@
             data: {img_give: img, title_give: title, singer_give: singer, comment_give: comment, genre_give: genre, date_give: today},
             success: function (response) {
                 alert(response['msg'])
-                window.reload.reload()
+                window.location.href = `/`
             }
         });
     }

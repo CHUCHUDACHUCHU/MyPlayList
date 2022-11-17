@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-    <title>MyPlayList</title>
+    <title>{{ user_info.user_id }} | MyPlayList</title>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -15,10 +15,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="{{ url_for('static', filename='assets/js/list.js') }}"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     <style>
         * {
             font-family: 'Jua', sans-serif;
@@ -44,6 +49,7 @@
         .card {
             height: 500px;
             width: 300px;
+            height: 500px;
             border-radius: 30px;
             margin: 15px;
             margin-top:auto;
@@ -106,6 +112,12 @@
         $(document).ready(function () {
             get_posts()
         })
+
+        function sign_out() {
+            $.removeCookie('mytoken', {path: '/'}); // removeCookie란 jQuery에서 쿠키를 지워주는 함수이다
+            alert('로그아웃!')
+            window.location.href = "/login"
+        }
     </script>
 </head>
 <body>
@@ -125,10 +137,15 @@
                     <div class="navbar-end">
 
                         <div class="navbar-end-box-one">
-                            <a class="button">마이페이지</a>
+                            <a class="button" onclick="window.location.href=`/create`">
+                                작성하기
+                            </a>
+                            <a class="button" href="/user/{{ user_info.user_id }}">마이페이지</a>
                             &nbsp&nbsp
-                            <a class="button is-danger">
-                                <span>로그아웃</span>
+                            <a class="button level-item has-text-centered is-sparta is-outlined is-danger" aria-label="logout"
+                               onclick="sign_out()">
+                                로그아웃&nbsp;&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-sign-out"
+                                                                                     aria-hidden="true"></i></span>
                             </a>
                         </div>
                     </div>
@@ -136,14 +153,19 @@
             </div>
         </nav>
     </div>
-    <div class="creat-box">
-        <a class="button" onclick="window.location.href=`/create`">
-            <span>작성하기</span>
-        </a>
-    </div>
 </section>
 <hr class="soild">
 <div id="cards-box" class="main-container">
 </div>
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+      is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+    </p>
+    <p>항해99 1주차 2조 팀 : 김혁찬, 추교윤, 김혜주, 유명환</p>
+  </div>
+</footer>
 </body>
 </html>

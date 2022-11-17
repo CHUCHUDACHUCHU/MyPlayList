@@ -32,40 +32,69 @@ import hashlib
 
 @app.route("/api/posts", methods=["POST"])
 def web_comments_post():
-    img_receive = request.form['img_give']
-    title_receive = request.form['title_give']
-    singer_receive = request.form['singer_give']
-    comment_receive = request.form['comment_give']
-    genre_receive = request.form['genre_give']
-    date_receive = request.form['date_give']
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"user_id": payload["id"]})  # payload에서 아이디를 가져와서 실제 유저의 정보를 읽어온다.
 
-    all_sings = list(db.sing.find({}, {'_id': False}))
+        img_receive = request.form['img_give']
+        title_receive = request.form['title_give']
+        singer_receive = request.form['singer_give']
+        comment_receive = request.form['comment_give']
+        genre_receive = request.form['genre_give']
+        date_receive = request.form['date_give']
 
-    count = len(all_sings) + 1
+        all_sings = list(db.sing.find({}, {'_id': False}))
 
-    doc = {
-        'img': img_receive,
-        'title': title_receive,
-        'singer': singer_receive,
-        'comment': comment_receive,
-        'genre': genre_receive,
-        'date': date_receive,
-        'index': count
-    }
-    db.sing.insert_one(doc)
-    return jsonify({'msg': '등록 완료!'})
+        count = len(all_sings) + 1
+
+        doc = {
+            'user_id': payload['id'],
+            'img': img_receive,
+            'title': title_receive,
+            'singer': singer_receive,
+            'comment': comment_receive,
+            'genre': genre_receive,
+            'date': date_receive,
+            'index': count
+        }
+        db.sing.insert_one(doc)
+        return jsonify({'msg': '등록 완료!'})
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"user_id": payload["id"]})  # payload에서 아이디를 가져와서 실제 유저의 정보를 읽어온다.
+        return render_template('index.html', user_info=user_info)
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
 @app.route('/create')
 def create():
     return render_template('creates.html')
 
-@app.route('/user')
-def user():
-    return render_template('user.html')
+@app.route('/user/<user_id>')
+def user(user_id):
+    # 각 사용자의 프로필과 글을 모아볼 수 있는 공간
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        status = (user_id == payload["id"])  # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
+
+        user_info = db.users.find_one({"user_id": user_id}, {"_id": False})
+        user_sings = list(db.sing.find({"user_id": user_id}).sort("date", -1).limit(20))
+        return render_template('user.html', user_info=user_info, user_sings=user_sings, status=status)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("home"))
 
 
 # 로그인 및 회원가입 API
@@ -87,7 +116,7 @@ def sign_in():
         payload = {
             'id': user_id_receive,
             # 'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
-            'exp': datetime.datetime.utcnow() + timedelta(seconds=60 * 2)  # 로그인 2분 유지
+            'exp': datetime.datetime.utcnow() + timedelta(seconds=60 * 5)  # 로그인 2분 유지
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
