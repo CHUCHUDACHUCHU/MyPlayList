@@ -41,50 +41,15 @@
 
         .card {
             width: 300px;
+
             border-radius: 30px;
             margin: 15px;
-            margin-top:auto;
         }
-
-        .head-container {
+        .button-box {
             display: flex;
-            justify-content: space-between;
-            width: 90%;
-            margin: auto;
-        }
-
-        .button-container {
-            max-width: 400px;
-
-        }
-
-        .header {
-            height: 70px;
-        }
-
-        .navbar-end-box-one {
-            display: flex;
-            width: 300px;
-            height: 35px;
-            justify-content: flex-end;
-        }
-
-        .creat-box {
-            display: flex;
-            width: 90%;
-            height: 35px;
-            margin:40px auto;
             flex-direction: row;
-            justify-content: flex-end;
-        }
-
-        .navbar-end {
-            flex-direction: column;
-            height: 30px;
-        }
-        hr.soild {
-            border-top: 3px solid #bbb;
-            margin-bottom: 80px;
+            flex-wrap: wrap;
+            align-items: flex-end;
         }
     </style>
     <script>
@@ -94,40 +59,46 @@
     </script>
 </head>
 <body>
-<section class="header">
+<section>
     <div class="hero-head">
-        <nav class="navbar head-container">
-            <div>
+        <nav class="navbar">
+            <div class="container">
                 <div class="navbar-brand">
                     <div class="navbar-item">
-                        <p style="cursor:pointer" class="title is-1" onclick="window.location.reload()">MyPlaylist<span
-                                class="title is-4">- 나만의 플레이 리스트를 만들어 보세요!</span></p>
+                        <p class="title is-1">MyPlaylist - USER</p>
                     </div>
                 </div>
-            </div>
-            <div class="button-container">
                 <div class="navbar-menu">
                     <div class="navbar-end">
-
-                        <div class="navbar-end-box-one">
-                            <a class="button">마이페이지</a>
-                            &nbsp&nbsp
-                            <a class="button is-danger">
-                                <span>로그아웃</span>
-                            </a>
-                        </div>
+                        <span class="">
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="노래 검색">
+                                </div>
+                                <div class="control">
+                                    <a class="button is-info">
+                                      Search
+                                    </a>
+                                </div>
+                                &#160&#160
+                                </div>
+                                <div class="button-box">
+                                    <a class="button is-inverted" onclick="window.location.href=`/create`">
+                                        <span>작성하기</span>
+                                    </a>
+                                    <a class="button is-danger">
+                                        <span>Logout</span>
+                                    </a>
+                                </div>
+                        </span>
                     </div>
                 </div>
             </div>
         </nav>
     </div>
-    <div class="creat-box">
-        <a class="button" onclick="window.location.href=`/create`">
-            <span>작성하기</span>
-        </a>
-    </div>
+    <div class="is-divider" data-content="OR"></div>
 </section>
-<hr class="soild">
+<hr class="rounded">
 <div id="cards-box" class="main-container">
 </div>
 </body>
