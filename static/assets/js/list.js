@@ -21,7 +21,7 @@ function get_posts() {
                 let time_post = new Date(post['date'])
                 let time_before = time2str(time_post)
 
-                let temp_html = `<div id="" class="card" onclick="window.location.href = \`/detail/?card=${index}\`">
+                let temp_html = `<div id="" style="cursor:pointer" class="card" onclick="window.location.href = \`/detail/?card=${index}\`">
 
                                     <div class="card-image">
                                         <figure class="image is-square">
