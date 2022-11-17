@@ -15,13 +15,13 @@ function get_posts() {
                 let img = post['img']
                 let title = post['title']
                 let singer = post['singer']
-                let comment = post['comment']
+                let user = post['user_id']
                 let genre = post['genre']
                 let index = post['index']
                 let time_post = new Date(post['date'])
                 let time_before = time2str(time_post)
 
-                let temp_html = `<div id="" class="card" onclick="window.location.href = \`/detail/?card=${index}\`">
+                let temp_html = `<div id="" style="cursor:pointer" class="card" onclick="window.location.href = \`/detail/?card=${index}\`">
 
                                     <div class="card-image">
                                         <figure class="image is-square">
@@ -36,7 +36,7 @@ function get_posts() {
                                             </div>
                                         </div>
                                         <div class="content">
-                                            <p>${comment}</p><small>${time_before}</small>
+                                            <p>작성자 : ${user}</p><small>${time_before}</small>
                                         </div>
                                     </div>
                                 </div>`;
