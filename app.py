@@ -128,23 +128,28 @@ def get_posts():
     return jsonify({"result": "success", "msg": "카드를 가져왔습니다.", "posts": posts})
 
 # comment post
-@app.route("/comment", methods=["POST"])
+@app.route("/detail/comment", methods=["POST"])
 def comments_post():
     name_receive = request.form['name_give']
     comment_receive = request.form['comment_give']
+    # one_card_receive = request.form['one_card_give']
+    card_id_receive = request.form['card_id_give']
 
     doc = {
+        # 'one_card': one_card_receive,
         'name': name_receive,
-        'comment': comment_receive
+        'comment': comment_receive,
+        'card_id': card_id_receive
     }
     db.comments.insert_one(doc)
 
     return jsonify({'msg': '저장 완료!'})
 
 # comment get
-@app.route("/comment", methods=["GET"])
+@app.route("/detail/comment", methods=["GET"])
 def comments_get():
-    comment_list = list(db.comments.find({}, {'_id': False}))
+    card_index = request.args.get('card')
+    comment_list = list(db.comments.find({'card_id':card_index}, {'_id': False}))
     return jsonify({'comments': comment_list})
 
 @app.route("/detail/")
@@ -154,12 +159,13 @@ def get_cards():
     cards = db.sing.find_one({'index': int(one_card)}, {'_id': False})
 
     if cards:
+        index = cards['index']
         img = cards['img']
         title = cards['title']
         singer = cards['singer']
         genre = cards['genre']
         comment = cards['comment']
-    return render_template("detail.html", img=img, title=title, singer=singer, genre=genre, comment=comment)
+    return render_template("detail.html", img=img, title=title, singer=singer, genre=genre, comment=comment, index=index)
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
