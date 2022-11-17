@@ -15,7 +15,7 @@ function get_posts() {
                 let img = post['img']
                 let title = post['title']
                 let singer = post['singer']
-                let comment = post['comment']
+                let user = post['user_id']
                 let genre = post['genre']
                 let index = post['index']
                 let time_post = new Date(post['date'])
@@ -36,7 +36,7 @@ function get_posts() {
                                             </div>
                                         </div>
                                         <div class="content">
-                                            <p>${comment}</p><small>${time_before}</small>
+                                            <p>작성자 : ${user}</p><small>${time_before}</small>
                                         </div>
                                     </div>
                                 </div>`;
